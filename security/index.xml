@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post on Electric Sheep and Androids</title>
-    <link>https://yktsr.github.io/categories/post/</link>
-    <description>Recent content in Post on Electric Sheep and Androids</description>
+    <title>Securities on Electric Sheep and Androids</title>
+    <link>https://yktsr.github.io/security/</link>
+    <description>Recent content in Securities on Electric Sheep and Androids</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Tue, 16 Jan 2018 16:28:12 +0900</lastBuildDate>
     
-	<atom:link href="https://yktsr.github.io/categories/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yktsr.github.io/security/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -22,15 +22,6 @@ char shellcode[] = &amp;quot;\x00\x00\x00\x00\x00&amp;quot;; (*(void(*)()) shell
 What does void mean in code
 そもそも関数ポインタってなんだっけ #include &amp;lt;stdio.h&amp;gt; void func(void); int main() { void (*hoge)() = func; hoge(); return 0; } void func() { printf(&amp;quot;hoge hoge&amp;quot;); }  変数hogeは関数ポインタ（アドレス）を指す。宣言方法は戻り値の型 (*変数名) (仮引数); つまり引数がある場合はこうする。
 #include &amp;lt;stdio.h&amp;gt; int func(int, int); int main() { int (*hoge)(int, int) = func; hoge(1,2); return 0; } int func(int a, int b) { return a+b; }  少し書き下してみる つまり下記を少し書き下すと、</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://yktsr.github.io/post/hello/</link>
-      <pubDate>Mon, 15 Jan 2018 17:27:04 +0900</pubDate>
-      
-      <guid>https://yktsr.github.io/post/hello/</guid>
-      <description>Blogはじめました プログラマにとって最初にやることは世界への挨拶！</description>
     </item>
     
   </channel>

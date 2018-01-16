@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="https://yktsr.github.io/images/logo.png">
 
 
-<link rel="canonical" href="https://yktsr.github.io/post/hello/">
+<link rel="canonical" href="https://yktsr.github.io/security/void_pointer/">
 
 
     
@@ -19,25 +19,25 @@
     
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
-    <title>Hello World - Electric Sheep and Androids</title>
+    <title>(*(void(*)()) shellcode)()の意味について考える - Electric Sheep and Androids</title>
     
 
-<meta name="description" content="Blogはじめました プログラマにとって最初にやることは世界への挨拶！">
+<meta name="description" content="(*(void(*)()) shellcode)()ってなんぞ？ 最近、アセンブリ言語の勉強を始めたわけだが、文字列を関数として呼び出すコードを書く際、決まってこの表現が出てくる。char shellcode[] = &amp;quot;\x00\x00\x00\x00\x00&amp;quot;; (*(void(*)()) shellcode)()  なんとなく関数ポインタを指していることは予想がつくが、そもそも文字列を関数として処理させるには どうしたらいんだろう？そんな疑問に大正義StackOverflowが答えてくれた。What does void mean in codeそもそも関数ポインタってなんだっけ #include &amp;lt;stdio.h&amp;gt; void func(void); int main() { void (*hoge)() = func; hoge(); return 0; } void func() { printf(&amp;quot;hoge hoge&amp;quot;); }  変数hogeは関数ポインタ（アドレス）を指す。宣言方法は戻り値の型 (*変数名) (仮引数); つまり引数がある場合はこうする。#include &amp;lt;stdio.h&amp;gt; int func(int, int); int main() { int (*hoge)(int, int) = func; hoge(1,2); return 0; } int func(int a, int b) { return a&#43;b; }  少し書き下してみる つまり下記を少し書き下すと、">
 
-<meta property="og:title" content="Hello World - Electric Sheep and Androids">
+<meta property="og:title" content="(*(void(*)()) shellcode)()の意味について考える - Electric Sheep and Androids">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://yktsr.github.io/post/hello/">
-<meta property="og:image" content="https://yktsr.github.io/images/author.jpg">
+<meta property="og:url" content="https://yktsr.github.io/security/void_pointer/">
+<meta property="og:image" content="https://yktsr.github.io/images/void.png">
 <meta property="og:site_name" content="Electric Sheep and Androids">
-<meta property="og:description" content="Blogはじめました プログラマにとって最初にやることは世界への挨拶！">
+<meta property="og:description" content="(*(void(*)()) shellcode)()ってなんぞ？ 最近、アセンブリ言語の勉強を始めたわけだが、文字列を関数として呼び出すコードを書く際、決まってこの表現が出てくる。char shellcode[] = &amp;quot;\x00\x00\x00\x00\x00&amp;quot;; (*(void(*)()) shellcode)()  なんとなく関数ポインタを指していることは予想がつくが、そもそも文字列を関数として処理させるには どうしたらいんだろう？そんな疑問に大正義StackOverflowが答えてくれた。What does void mean in codeそもそも関数ポインタってなんだっけ #include &amp;lt;stdio.h&amp;gt; void func(void); int main() { void (*hoge)() = func; hoge(); return 0; } void func() { printf(&amp;quot;hoge hoge&amp;quot;); }  変数hogeは関数ポインタ（アドレス）を指す。宣言方法は戻り値の型 (*変数名) (仮引数); つまり引数がある場合はこうする。#include &amp;lt;stdio.h&amp;gt; int func(int, int); int main() { int (*hoge)(int, int) = func; hoge(1,2); return 0; } int func(int a, int b) { return a&#43;b; }  少し書き下してみる つまり下記を少し書き下すと、">
 <meta property="og:locale" content="ja_JP">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="Electric Sheep and Androids">
-<meta name="twitter:url" content="https://yktsr.github.io/post/hello/">
-<meta name="twitter:title" content="Hello World - Electric Sheep and Androids">
-<meta name="twitter:description" content="Blogはじめました プログラマにとって最初にやることは世界への挨拶！">
-<meta name="twitter:image" content="https://yktsr.github.io/images/author.jpg">
+<meta name="twitter:url" content="https://yktsr.github.io/security/void_pointer/">
+<meta name="twitter:title" content="(*(void(*)()) shellcode)()の意味について考える - Electric Sheep and Androids">
+<meta name="twitter:description" content="(*(void(*)()) shellcode)()ってなんぞ？ 最近、アセンブリ言語の勉強を始めたわけだが、文字列を関数として呼び出すコードを書く際、決まってこの表現が出てくる。char shellcode[] = &amp;quot;\x00\x00\x00\x00\x00&amp;quot;; (*(void(*)()) shellcode)()  なんとなく関数ポインタを指していることは予想がつくが、そもそも文字列を関数として処理させるには どうしたらいんだろう？そんな疑問に大正義StackOverflowが答えてくれた。What does void mean in codeそもそも関数ポインタってなんだっけ #include &amp;lt;stdio.h&amp;gt; void func(void); int main() { void (*hoge)() = func; hoge(); return 0; } void func() { printf(&amp;quot;hoge hoge&amp;quot;); }  変数hogeは関数ポインタ（アドレス）を指す。宣言方法は戻り値の型 (*変数名) (仮引数); つまり引数がある場合はこうする。#include &amp;lt;stdio.h&amp;gt; int func(int, int); int main() { int (*hoge)(int, int) = func; hoge(1,2); return 0; } int func(int a, int b) { return a&#43;b; }  少し書き下してみる つまり下記を少し書き下すと、">
+<meta name="twitter:image" content="https://yktsr.github.io/images/void.png">
 
 
 <script type="application/ld+json">
@@ -48,15 +48,15 @@
       "@type": "WebPage",
       "@id":"https://yktsr.github.io/"
     },
-    "headline": "Hello World - Electric Sheep and Androids",
+    "headline": "(*(void(*)()) shellcode)()の意味について考える - Electric Sheep and Androids",
     "image": {
       "@type": "ImageObject",
-      "url": "https://yktsr.github.io/images/author.jpg",
+      "url": "https://yktsr.github.io/images/void.png",
       "height": 800,
       "width": 800
     },
-    "datePublished": "2018-01-15T17:27:04JST",
-    "dateModified": "2018-01-15T17:27:04JST",
+    "datePublished": "2018-01-16T16:28:12JST",
+    "dateModified": "2018-01-16T16:28:12JST",
     "author": {
       "@type": "Person",
       "name": "Electric Sheep and Androids"
@@ -71,7 +71,11 @@
         "height": 60
       }
     },
-    "description": "Blogはじめました プログラマにとって最初にやることは世界への挨拶！"
+    "description": "(*(void(*)()) shellcode)()ってなんぞ？ 最近、アセンブリ言語の勉強を始めたわけだが、文字列を関数として呼び出すコードを書く際、決まってこの表現が出てくる。
+char shellcode[] = &quot;\x00\x00\x00\x00\x00&quot;; (*(void(*)()) shellcode)()  なんとなく関数ポインタを指していることは予想がつくが、そもそも文字列を関数として処理させるには どうしたらいんだろう？そんな疑問に大正義StackOverflowが答えてくれた。
+What does void mean in code
+そもそも関数ポインタってなんだっけ #include &lt;stdio.h&gt; void func(void); int main() { void (*hoge)() = func; hoge(); return 0; } void func() { printf(&quot;hoge hoge&quot;); }  変数hogeは関数ポインタ（アドレス）を指す。宣言方法は戻り値の型 (*変数名) (仮引数); つまり引数がある場合はこうする。
+#include &lt;stdio.h&gt; int func(int, int); int main() { int (*hoge)(int, int) = func; hoge(1,2); return 0; } int func(int a, int b) { return a+b; }  少し書き下してみる つまり下記を少し書き下すと、"
   }
 </script>
 
@@ -111,24 +115,24 @@
 
     <article class="sn">
 
-  <div class="thumb thumb-c0984379b06fc6168671e67f4dc3828a"></div>
+  <div class="thumb thumb-b95f31349c8755f3a34e6baca8fa6a15"></div>
 
   <header class="article-header">
-    <h1 class="title">Hello World</h1>
+    <h1 class="title">(*(void(*)()) shellcode)()の意味について考える</h1>
 
     <ul class="facts">
-      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-15T17:27:04JST">Jan 15, 2018</time></li>
-      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yktsr.github.io/post/">POST</a></li>
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-16T16:28:12JST">Jan 16, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yktsr.github.io/security/">SECURITY</a></li>
       
     </ul>
 
     <aside class="share">
-  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&title=Hello%20World" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
-  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&text=Hello%20World&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&t=Hello%20World" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-  <a href="https://plus.google.com/share?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-  <a href="http://getpocket.com/edit?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&title=Hello%20World" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
-  <a href="http://line.me/R/msg/text/?Hello%20World https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&title=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&text=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&t=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&title=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
 </aside>
 
   </header>
@@ -137,7 +141,12 @@
   <div class="toc">
     <nav id="TableOfContents">
 <ul>
-<li><a href="#blogはじめました">Blogはじめました</a></li>
+<li><a href="#void-shellcode-ってなんぞ"><code>(*(void(*)()) shellcode)()</code>ってなんぞ？</a>
+<ul>
+<li><a href="#そもそも関数ポインタってなんだっけ">そもそも関数ポインタってなんだっけ</a></li>
+<li><a href="#少し書き下してみる">少し書き下してみる</a></li>
+<li><a href="#の-っている">(*(の*っている？</a></li>
+</ul></li>
 </ul>
 </nav>
   </div>
@@ -145,20 +154,100 @@
 
   <div class="article-body">
 
-<h1 id="blogはじめました">Blogはじめました</h1>
+<h1 id="void-shellcode-ってなんぞ"><code>(*(void(*)()) shellcode)()</code>ってなんぞ？</h1>
 
-<p>プログラマにとって最初にやることは世界への挨拶！</p>
+<p>最近、アセンブリ言語の勉強を始めたわけだが、文字列を関数として呼び出すコードを書く際、決まってこの表現が出てくる。</p>
+
+<pre><code>char shellcode[] = &quot;\x00\x00\x00\x00\x00&quot;;
+(*(void(*)()) shellcode)()
+</code></pre>
+
+<p>なんとなく関数ポインタを指していることは予想がつくが、そもそも文字列を関数として処理させるには
+どうしたらいんだろう？そんな疑問に大正義StackOverflowが答えてくれた。</p>
+
+<p><a href="https://stackoverflow.com/questions/18448204/what-does-void-mean-in-code">What does void mean in code</a></p>
+
+<h2 id="そもそも関数ポインタってなんだっけ">そもそも関数ポインタってなんだっけ</h2>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+void func(void);
+
+int main() {
+  void (*hoge)() = func;
+  hoge();
+  return 0;
+}
+
+void func() {
+  printf(&quot;hoge hoge&quot;);
+}
+</code></pre>
+
+<p>変数hogeは関数ポインタ（アドレス）を指す。宣言方法は<strong>戻り値の型 (*変数名) (仮引数)</strong>;
+つまり引数がある場合はこうする。</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int func(int, int);
+
+int main() {
+  int (*hoge)(int, int) = func;
+  hoge(1,2);
+  return 0;
+}
+
+int func(int a, int b) {
+  return a+b;
+}
+</code></pre>
+
+<h2 id="少し書き下してみる">少し書き下してみる</h2>
+
+<p>つまり下記を少し書き下すと、</p>
+
+<pre><code>(*(void(*)()) shellcode)()
+</code></pre>
+
+<pre><code>char shellcode[] = &quot;\x00\x00\x00\x00\x00&quot;;
+void (*funcPointer)() = (void(*)())shellcode;
+funcPointer();
+</code></pre>
+
+<p>2行目で文字を関数ポインタへキャストし、3行目で実行する。
+ここから変数名と仮引数を省略し、関数呼び出しを1行で行うと上記の表現になる。</p>
+
+<h2 id="の-っている">(*(の*っている？</h2>
+
+<p>するとこれって</p>
+
+<pre><code>((void(*)()) shellcode)()
+</code></pre>
+
+<p>でもよいのでは？</p>
+
+<p>この疑問にもStackOverflowは答えてくれていた！</p>
+
+<blockquote>
+<p><code>(*(plainsig_t*)shellcode) ();</code></p>
+
+<p>For function pointers, you don&rsquo;t need to dereference them, so it is shorter to just code:</p>
+
+<p><code>((plainsig_t*) shellcode) ();</code></p>
+</blockquote>
+
+<p>やS神</p>
 </div>
 
   <footer class="article-footer">
 
     <aside class="share">
-  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&title=Hello%20World" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
-  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&text=Hello%20World&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&t=Hello%20World" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-  <a href="https://plus.google.com/share?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-  <a href="http://getpocket.com/edit?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f&title=Hello%20World" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
-  <a href="http://line.me/R/msg/text/?Hello%20World https%3a%2f%2fyktsr.github.io%2fpost%2fhello%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&title=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&text=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&t=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f&title=%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?%28%2a%28void%28%2a%29%28%29%29%20shellcode%29%28%29%e3%81%ae%e6%84%8f%e5%91%b3%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e8%80%83%e3%81%88%e3%82%8b https%3a%2f%2fyktsr.github.io%2fsecurity%2fvoid_pointer%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
 </aside>
 
 
@@ -168,9 +257,9 @@
           <ol>
             <li><a href="https://yktsr.github.io/"><i class="fa fa-home" aria-hidden="true"></i>TOP</a></li>
             
-            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yktsr.github.io/post/" itemprop="url"><span itemprop="title">POST</span></a></li>
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yktsr.github.io/security/" itemprop="url"><span itemprop="title">SECURITY</span></a></li>
             
-            <li class="active">Hello World</li>
+            <li class="active">(*(void(*)()) shellcode)()の意味について考える</li>
           </ol>
         </nav>
       </div>
@@ -188,7 +277,7 @@
           
           <li><a href="https://yktsr.github.io/categories/post/">POST</a></li>
           
-          <li><a href="https://yktsr.github.io/categories/other/">Other</a></li>
+          <li><a href="https://yktsr.github.io/categories/security/">Security</a></li>
           
         </ul>
       </div>
