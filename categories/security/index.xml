@@ -6,10 +6,19 @@
     <description>Recent content in Security on Electric Sheep and Androids</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 16 Jan 2018 16:28:12 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jan 2018 15:22:10 +0900</lastBuildDate>
     
 	<atom:link href="https://yktsr.github.io/categories/security/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AES CBCモードで初期化ベクトルと鍵を指定して暗号化・復号</title>
+      <link>https://yktsr.github.io/security/hexstring/</link>
+      <pubDate>Mon, 22 Jan 2018 15:22:10 +0900</pubDate>
+      
+      <guid>https://yktsr.github.io/security/hexstring/</guid>
+      <description>AES CBCモードで初期化ベクトルと鍵を指定して暗号化・復号 openssl options options are -in &amp;lt;file&amp;gt; input file -out &amp;lt;file&amp;gt; output file -pass &amp;lt;arg&amp;gt; pass phrase source -e encrypt -d decrypt -a/-base64 base64 encode/decode, depending on encryption flag -k passphrase is the next argument -kfile passphrase is the first line of the</description>
+    </item>
     
     <item>
       <title>(*(void(*)()) shellcode)()の意味について考える</title>
