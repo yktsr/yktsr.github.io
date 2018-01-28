@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="pinterest" content="nopin">
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="theme-color" content="#263238">
+
+<meta name="generator" content="Hugo 0.34" />
+
+<link rel="apple-touch-icon" href="https://yktsr.github.io/images/logo.png">
+
+
+<link rel="canonical" href="https://yktsr.github.io/post/hdd_broken/">
+
+
+    
+    <link href="https://fonts.googleapis.com/css?family=Lobster%7cLato:400,700" rel="stylesheet">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/solarized_dark.min.css">
+    <title>HDD/SSDの復旧方法まとめ - Electric Sheep and Androids</title>
+    
+
+<meta name="description" content="事の始まり SSDが壊れた． またか，と思っていつもどおりddrescueの使い方を調べ始める． 去年は3台ほどHDDを壊し，ddrescueによ">
+
+<meta property="og:title" content="HDD/SSDの復旧方法まとめ - Electric Sheep and Androids">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://yktsr.github.io/post/hdd_broken/">
+<meta property="og:image" content="https://yktsr.github.io/images/cat21449.jpg">
+<meta property="og:site_name" content="Electric Sheep and Androids">
+<meta property="og:description" content="事の始まり SSDが壊れた． またか，と思っていつもどおりddrescueの使い方を調べ始める． 去年は3台ほどHDDを壊し，ddrescueによ">
+<meta property="og:locale" content="ja_JP">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="Electric Sheep and Androids">
+<meta name="twitter:url" content="https://yktsr.github.io/post/hdd_broken/">
+<meta name="twitter:title" content="HDD/SSDの復旧方法まとめ - Electric Sheep and Androids">
+<meta name="twitter:description" content="事の始まり SSDが壊れた． またか，と思っていつもどおりddrescueの使い方を調べ始める． 去年は3台ほどHDDを壊し，ddrescueによ">
+<meta name="twitter:image" content="https://yktsr.github.io/images/cat21449.jpg">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "NewsArticle",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id":"https://yktsr.github.io/"
+    },
+    "headline": "HDD/SSDの復旧方法まとめ - Electric Sheep and Androids",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://yktsr.github.io/images/cat21449.jpg",
+      "height": 800,
+      "width": 800
+    },
+    "datePublished": "2018-01-28T17:51:24JST",
+    "dateModified": "2018-01-28T17:51:24JST",
+    "author": {
+      "@type": "Person",
+      "name": "Electric Sheep and Androids"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Electric Sheep and Androids",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://yktsr.github.io/images/logo.png",
+        "width": 600,
+        "height": 60
+      }
+    },
+    "description": "事の始まり SSDが壊れた． またか，と思っていつもどおりddrescueの使い方を調べ始める． 去年は3台ほどHDDを壊し，ddrescueによ"
+  }
+</script>
+
+
+    <style>
+      html { font-size: 18px; background-color: rgba(236,239,241,.5);}@media (max-width: 768px) { html { font-size: 15px; }}body { color: #333; font-family: 'Roboto Slab','ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro',メイリオ,Meiryo,sans-serif; font-feature-settings : "palt"; font-size: inherit; line-height: 1rem; margin: 0; padding: 0;}h1, h2, h3, h4, h5 ,h6 { font-size: 1rem; font-weight: 700; line-height: 1rem; margin: 0;}hr { border: 0; border-top: 1px dashed #cfd8dc; margin: 1rem 0;}p { margin: 0; line-height: 1rem;}a { color: #2196f3; text-decoration: none; transition-duration: .3s;}ul, ol { margin: 0; padding: 0;}table { border-collapse: collapse;}th, td { font-size: .8rem; padding: .5rem;}tr { border-bottom: 1px dashed #ddd;}/* Layouts */main,aside { display: block;}main { padding: 1rem 0 3rem 0; }aside.h { padding: 3rem 0; }main.f,aside.f { background-color: #333; border-top: 2px dashed #fff; border-bottom: 2px dashed #fff;}.l-container { position: relative; max-width: 68rem; margin: 0 auto; padding: 0 1rem;}.l-container.thin { max-width: 44rem;}.l-header { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); padding: 1rem 0; text-align: center;}.l-header .description { margin-top: .5rem; font-size: .8rem;}.l-footer { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); font-size: .6rem; font-weight: 700; padding: 1rem 0;}@media (max-width: 768px) { .l-sidebar { margin-top: 4rem; }}.mrow { margin: 0 -1rem; overflow: hidden;}.mcol { box-sizing: border-box; float: left; padding: 0 1rem;}.c6 { width: 50%; }.c4 { width: 33.26323833%; }.c8 { width: 66.66666%; }@media (max-width: 768px) { .mcol { width: 100%; float: none; }}.logo a { font-size: 1.4rem; line-height: 1.5rem; font-weight: 700; color: #333;}.articles { margin: -1rem 0; margin-bottom: 1rem;}.articles.sm { margin: -.5rem 0; margin-bottom: 0;}article { border-radius: 4px; overflow: hidden;}article.li { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); height: 20rem; overflow: hidden; margin: 1rem 0;}article.li > a { display: block; color: #333;}article.li .inner { padding: 1rem;}article.li .thumb { height: 8rem;}article.li .title { color: #333; font-size: 1.2rem; line-height: 1.5rem; margin-bottom: .5rem;}article.li .summary { font-size: .8rem; height: 6rem; overflow: hidden; margin-top: 1rem;}article.li .summary::after { content: '...';}article.lism { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin: .5rem 0;}article.lism::after { content: ''; display: block; clear: both;}article.lism > a { display: block; color: #333;}article.lism .inner { display: table-cell; vertical-align: middle; height: 5rem; padding: 0 .75rem;}article.lism .thumb { width: 5rem; height: 5rem; float: left;}article.lism .title { font-weight: 700; font-size: .8rem; margin-bottom: .25rem;}article.sn { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); margin-bottom: 1rem;}article.sn .thumb { height: 20rem;}@media (max-width: 768px) { article.sn .thumb { height: 10rem; }}article.sn > .article-header,article.sn > .article-body,article.sn .article-footer { padding: 2rem;}article.sn > .article-body { padding: 0 2rem;}@media (max-width: 768px) { article.sn > .article-header, article.sn > .article-body, article.sn .article-footer { padding: 1rem; } article.sn > .article-body { padding: 0 1rem; }}article.sn > .article-header .title { font-size: 1.8rem; line-height: 2rem; margin-bottom: .5rem;}@media (max-width: 768px) { article.sn > .article-header .title { font-size: 1.4rem; line-height: 1.5rem; }}article.sn > .article-header .facts { margin-bottom: 1rem;}article.sn > .article-body { margin-bottom: 1.5rem;}article.sn > .article-body h2 { border-bottom: .25rem solid #333; font-size: 1.2rem; line-height: 1.5rem; margin: 1.5rem 0; padding: .5rem 0;}article.sn > .article-body h3 { border-left: .5rem solid #333; line-height: 1.5rem; margin: 1.5rem 0; padding: .125rem .5rem;}article.sn > .article-body ul,article.sn > .article-body ol { margin: 1.5rem 0; padding-left: 1.5rem;}article.sn > .article-body li { padding-bottom: .5rem; line-height: 1.5rem;}article.sn > .article-body li:last-child { padding-bottom: 0;}article.sn > .article-body p { margin: 1rem 0; line-height: 1.5rem;}article.sn > .article-body strong,article.sn > .article-body em { font-style: normal; font-weight: 700;}article.sn > .article-body strong { box-shadow: 0 -.5rem 0 0 #ffc107 inset;}article.sn > .article-body em { color: #8bc34a;}article.sn > .article-body code,article.sn > .article-body pre { font-family: Menlo, Consolas, monospace; font-size: .7rem;}article.sn > .article-body pre { background-color: #333; color: #fff; line-height: 1rem; margin: 1.5rem -2rem; overflow: auto;}@media (max-width: 768px) { article.sn > .article-body pre { margin: 1.5rem -1rem; }}article.sn > .article-body pre > code { display: block; padding: 1rem 2rem;}@media (max-width: 768px) { article.sn > .article-body pre > code { padding: 1rem; }}article.sn > .article-body p code { background-color: #eceff1; color: #333; border-radius: 4px; margin: 0 .25rem; padding: .375rem; white-space: nowrap;}article.sn > .article-body blockquote { position: relative; border-left: .25rem solid #333; font-size: .8rem; padding: .125rem 1rem; margin: 1.5rem 0;}@media (max-width: 768px) { article.sn > .article-body blockquote { font-size: 1rem; }}article.sn > .article-body blockquote p { margin: .5rem 0; line-height: 1rem;}article.sn > .article-body figure { margin: 1.5rem 0;}article.sn > .article-body figure img,article.sn > .article-body figure amp-img { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); max-width: 100%;}article.sn > .article-body figcaption { color: #cfd8dc; font-size: .8rem; font-weight: 700; margin-top: .5rem;}.facts li { display: inline; font-size: .8rem; margin-right: 1rem;}.facts i { color: #cfd8dc; margin-right: .5em;}.facts.sm li { font-size: .7rem;}.sections.sidebar { margin: -1rem 0;}.sections.footer { margin: -1rem 0;}section.sidebar { margin: 2rem 0;}section.sidebar > header { font-size: .8rem; font-weight: 700; letter-spacing: 4px; text-align: center; margin: 1.5rem 0;}section.footer { margin: 1rem 0;}section.footer > header { font-size: .8rem; margin: .5rem 0;}section.footer > header::before { content: "- ";}section.footer > header a { font-weight: 700; color: #333; text-decoration: underline;}.terms { margin: -.25rem;}.terms li { display: inline-block;}.terms a { display: block; float: left; background-color: #333; border-radius: 4px; color: #fff; font-size: .7rem; margin: .25rem; padding: 0 .75rem; line-height: 1.75rem;}.paging { text-align: center; padding: 1rem 0;}.paging a { display: inline-block; background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); border-radius: 4px; color: #333; padding: 0 1rem; line-height: 3rem;}.page-title { text-align: center; margin: 1rem 0;}.page-title::after { content: ''; display: block; border-bottom: .25rem solid #333; width: 3rem; margin: 1.5rem auto;}.page-title > .title { font-size: 1.2rem; line-height: 1.5rem;}/* Parts:breadcrumb */.crumb ol { text-overflow: ellipsis; color: #cfd8dc; white-space: nowrap; overflow: hidden;}.crumb li { display: inline; font-size: .8rem;}.crumb li::after { content: '›'; margin: 0 .25rem 0 .5rem;}.crumb li:last-child::after { content: '';}.crumb a { color: #cfd8dc;}.crumb i { margin-right: .5em;}.share { padding: 0;}.share a { display: inline-block; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); min-width: 1rem; height: 2rem; border-radius: 4px; color: #333; font-size: .8rem; font-weight: 700; line-height: 2rem; text-align: center; padding: 0 .5rem;}.adj article.lism { margin-bottom: 1rem;}.adj header { font-weight: 700; font-size: .8rem;}.toc { padding: 0 2rem;}@media (max-width: 768px) { .toc { padding: 0 1rem; }}.toc { margin: 1rem 0;}.toc nav>ul { background-color: #eceff1; border-radius: 4px; display: inline-block; font-size: .8rem; padding: .5rem 1rem; word-break: break-all; list-style: none;}.toc ul { padding: 0;}.toc ul ul { padding-left: 1rem;}.toc ul ul ul { padding-left: 1rem;}.toc li { color: #90a4ae;}.toc ul ul>li { font-weight: 700; margin: .5rem 0; list-style-type: decimal;}.toc ul ul ul>li { list-style-type: disc; font-weight: 500;}.author { background-color: #fff; box-shadow: 0 0 0 1px rgba(63,63,68,.05), 0 1px 3px rgba(63,63,68,.1), 0 1px 2px rgba(0,0,0,.05); padding: 1rem; border-radius: 4px; text-align: center;}.author .author-thumb { margin: 0 auto 1rem; width: 6rem; height: 6rem; border-radius: 50%; background-color: #eceff1; background-size: cover; background-position: center;}.author .author-name { margin-bottom: .5rem; font-weight: 700;}.author .author-facts { margin-bottom: 1rem;}.author .author-facts li { display: inline;}.author .author-facts li a { display: inline-block; background-color: #eceff1; width: 1.75rem; height: 1.75rem; line-height: 1.75rem; text-align: center; color: #333; font-size: .8rem; border-radius: 2px;}.author .author-facts li a:hover { color: #fff; background-color: #333;}.author .author-description { text-align: left; font-size: .8rem;}.author .author-description p { margin: .5rem 0;}.thumb { background-image: url(https://yktsr.github.io/images/default.jpg); background-size: cover; background-position: center;}.thumb-4134463d7df786f860e661115d10d8dc { background-image: url(https://yktsr.github.io/images/cat21449.jpg);}.thumb-0914e6be9375662c066e27d6801b7603 { background-image: url(https://yktsr.github.io/images/cat21908.jpg);}.thumb-b95f31349c8755f3a34e6baca8fa6a15 { background-image: url(https://yktsr.github.io/images/void.png);}.thumb-c0984379b06fc6168671e67f4dc3828a { background-image: url(https://yktsr.github.io/images/author.jpg);}
+      
+       body { font-family: Lato,YuGothic,'Hiragino Kaku Gothic Pro',Meiryo,sans-serif; } 
+       .h-logo { font-family: Lobster, cursive; } 
+    </style>
+  </head>
+
+  <body>
+    
+    
+    
+
+    <header class="l-header">
+      <div class="l-container">
+        <div class="logo">
+          <a href="https://yktsr.github.io/">Electric Sheep and Androids</a>
+        </div>
+        
+<div class="description">
+  Someting, Someting
+</div>
+
+
+      </div>
+    </header>
+
+    <main>
+      <div class="l-container">
+        
+<div class="mrow">
+  <div class="mcol c8">
+
+    <article class="sn">
+
+  <div class="thumb thumb-4134463d7df786f860e661115d10d8dc"></div>
+
+  <header class="article-header">
+    <h1 class="title">HDD/SSDの復旧方法まとめ</h1>
+
+    <ul class="facts">
+      <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T17:51:24JST">Jan 28, 2018</time></li>
+      <li><i class="fa fa-bookmark" aria-hidden="true"></i><a href="https://yktsr.github.io/post/">POST</a></li>
+      
+    </ul>
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&title=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&text=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&t=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&title=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81 https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+  </header>
+
+  
+  <div class="toc">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#事の始まり">事の始まり</a>
+<ul>
+<li><a href="#最初の悲劇">最初の悲劇</a>
+<ul>
+<li><a href="#systemrescuecd">systemrescueCD</a></li>
+</ul></li>
+<li><a href="#ddrescueとは">ddrescueとは</a>
+<ul>
+<li><a href="#初動の使い方">初動の使い方</a></li>
+<li><a href="#読み取れなかった箇所の読み取りを再度チャレンジ">読み取れなかった箇所の読み取りを再度チャレンジ</a></li>
+<li><a href="#ところが">ところが・・・</a></li>
+</ul></li>
+<li><a href="#ディスク全体をクローン">ディスク全体をクローン</a></li>
+<li><a href="#パーティションテーブルが壊れているのでは">パーティションテーブルが壊れているのでは？</a></li>
+<li><a href="#testdiskを使う">testdiskを使う</a>
+<ul>
+<li><a href="#使い方">使い方</a>
+<ul>
+<li><a href="#1個目">1個目</a></li>
+<li><a href="#2個目">2個目</a>
+<ul>
+<li><a href="#なんかこうdeeper-searchとかやってみたけど無理だった">なんかこうDeeper Searchとかやってみたけど無理だった</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#意味はないだろうけど-ntfsfixもやってみた">意味はないだろうけど，ntfsfixもやってみた</a></li>
+<li><a href="#万策尽きた-o">万策尽きた／(^o^)＼</a></li>
+<li><a href="#運良く復旧出来たら">運良く復旧出来たら</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+  
+
+  <div class="article-body">
+
+<h1 id="事の始まり">事の始まり</h1>
+
+<p>SSDが壊れた．
+またか，と思っていつもどおりddrescueの使い方を調べ始める．
+去年は3台ほどHDDを壊し，ddrescueによって九死に一生を得てきた．ddrescueさえあれば大抵のことはどうにかなる．もう手慣れたものだ，そう，思っていた．このときまでは&hellip;&hellip;</p>
+
+<h2 id="最初の悲劇">最初の悲劇</h2>
+
+<p>最初の悲劇はここで訪れる．そもそもデバイスを<strong>認 識 し な い</strong> ／(^o^)＼．
+そんなんどうすればええねん・・・Ubuntuを何回か再起動するも，SATAを抜き差しするもさっぱりダメだった．</p>
+
+<h3 id="systemrescuecd">systemrescueCD</h3>
+
+<p>システムを毎回すべて再起動するのは大変なので，小さいLinuxに復旧用ツールを詰め込んだ
+systemrescueCDにメインを移すことにした．</p>
+
+<p>あってよかった．</p>
+
+<p>systemrescueCDに入れ替えた初回，なぜかデバイスを認識した！ktkr！！やs神</p>
+
+<h2 id="ddrescueとは">ddrescueとは</h2>
+
+<p>次に出てくるのはご存知<a href="https://ja.wikipedia.org/wiki/Ddrescue">ddrescue</a>．
+端的に言えば，ddコマンドの復旧に特化したすごい版である．</p>
+
+<p>使い方も非常にシンプル．</p>
+
+<h3 id="初動の使い方">初動の使い方</h3>
+
+<pre><code class="language-bash">Usage: ddrescue [options] infile outfile [logfile]
+
+# ddrescue -v /dev/sdb /dev/sdc rescue.log
+</code></pre>
+
+<p>outfileはデバイスである必要はなく，ファイルにも書き出し可能である．
+logfileは読み取れなかったセクタの再読み出しに使うので必ず指定する．</p>
+
+<h3 id="読み取れなかった箇所の読み取りを再度チャレンジ">読み取れなかった箇所の読み取りを再度チャレンジ</h3>
+
+<pre><code class="language-shell"># ddrescue -v -r 3 /dev/sdb /dev/sdc rescue.log
+</code></pre>
+
+<p>rは再読み取りを試みる回数である．</p>
+
+<h3 id="ところが">ところが・・・</h3>
+
+<p>エラーサイズが小さくならない．いつもなら読み取れない領域なんてほんの少しで
+何回か繰り返せば読めていたのに・・・．これがSSDの特性か．
+r3で読み取り続けること15時間，ようやくエラーサイズが130MBになったものの
+これ以上はもう物理的に無理だった．</p>
+
+<h2 id="ディスク全体をクローン">ディスク全体をクローン</h2>
+
+<p>いつもであれば，ディスクイメージを別のディスクへ書き込めば終了である．
+とりえあえず，ディスクをマウントしてみる．</p>
+
+<pre><code># mount windows.img /mnt
+mount: wrong fs type, bad option, bad superblock on /dev/loop3,
+       missing codepage or helper program, or other error
+
+       In some cases useful info is found in syslog - try
+       dmesg | tail or so.
+</code></pre>
+
+<p>マウントできない？よく考えればディスク全体イメージなので，パーティションの先頭を指定してやる必要がある．</p>
+
+<pre><code class="language-bash">$ parted windows.img 
+WARNING: You are not superuser.  Watch out for permissions.
+GNU Parted 3.2
+Using windows.img
+Welcome to GNU Parted! Type 'help' to view a list of commands.
+(parted) unit b
+(parted) p                                                                
+Model:  (file)
+Disk windows.img: 128035676160B
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags: 
+
+Number  Start         End            Size          Type     File system  Flags
+ 1      4096B         28790751231B   28790747136B  primary  ntfs         boot
+ 2      28790751232B  98894348287B   70103597056B  primary  ntfs
+ 3      98894348288B  128035323903B  29140975616B  primary  ntfs         diag
+</code></pre>
+
+<pre><code class="language-bash">$ sudo mount -o offset=4096 windows.img /mnt
+$ ls /mnt
+bootmgr  BOOTSECT.BAK  Recovery      $RECYCLE.BIN               Temp
+BOOTNXT  found.000     Recovery.txt  System Volume Information  XGUFC
+</code></pre>
+
+<p>最初の領域は読めた！</p>
+
+<pre><code>$ sudo mount -o offset=28790751232 windows.img /mnt
+ntfs_mst_post_read_fixup_warn: magic: 0x00000000  size: 4096   usa_ofs: 0  usa_count: 65535: Invalid argument
+Index buffer (VCN 0x0) of directory inode 0x5 has a size (24) differing from the directory specified size (4096).
+Failed to mount '/dev/loop3': Input/output error
+NTFS is either inconsistent, or there is a hardware fault, or it's a
+SoftRAID/FakeRAID hardware. In the first case run chkdsk /f on Windows
+then reboot into Windows twice. The usage of the /f parameter is very
+important! If the device is a SoftRAID/FakeRAID then first activate
+it and mount a different device under the /dev/mapper/ directory, (e.g.
+/dev/mapper/nvidia_eahaabcc1). Please see the 'dmraid' documentation
+for more details.
+</code></pre>
+
+<p>読めない＼(^o^)／</p>
+
+<pre><code>$ sudo mount -o offset=98894348288 windows.img /mnt
+$ ls /mnt
+Recovery  Recovery.txt  System Volume Information
+</code></pre>
+
+<p>読めた！</p>
+
+<p>このままだと，クローンしても起動できない．どうすんのこれ？</p>
+
+<h2 id="パーティションテーブルが壊れているのでは">パーティションテーブルが壊れているのでは？</h2>
+
+<p>ディスクが読めないのには大きく分けて2つがあると思う．</p>
+
+<ol>
+<li><p>パーティションテーブルが読めない</p>
+
+<ul>
+<li>testdiskを使う．可能ならパーティションテーブルを修復する．</li>
+</ul></li>
+
+<li><p>ファイルシステムにエラーがある</p>
+
+<ul>
+<li>NTFSの場合は，ntfsfixを使う．一般的にはfsckを使う．ntfsfixはfsck.ntfsとfsck.ntfs-3gのシンボリックリンク先らしい．</li>
+</ul></li>
+</ol>
+
+<p>エラーの内容をggったところ，askubuntuに答えがあった．<a href="https://askubuntu.com/questions/825327/ntfs-drive-corrupt">NTFS drive corrupt</a></p>
+
+<p>testdiskを使う．</p>
+
+<h2 id="testdiskを使う">testdiskを使う</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/TestDisk">testdisk</a>は主にデータ復旧やパーティションテーブルの復旧に使われる．</p>
+
+<h3 id="使い方">使い方</h3>
+
+<p>ディスクイメージそのものを指定する．</p>
+
+<pre><code>$ testdisk windows.img
+</code></pre>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+
+  TestDisk is free software, and
+  comes with ABSOLUTELY NO WARRANTY.
+
+  Select a media (use Arrow keys, then press Enter):
+  &gt;Disk windows.img - 128 GB / 119 GiB
+
+&gt;[Proceed ]  [  Quit  ]
+
+Note: Disk capacity must be correctly detected for a successful recovery.
+If a disk listed above has incorrect size, check HD jumper settings, BIOS
+detection, and install the latest OS patches and disk drivers.
+</code></pre>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+
+
+Disk windows.img - 128 GB / 119 GiB
+
+Please select the partition table type, press Enter when done.
+&gt;[Intel  ] Intel/PC partition
+ [EFI GPT] EFI GPT partition map (Mac i386, some x86_64...)
+ [Humax  ] Humax partition table
+ [Mac    ] Apple partition map
+ [None   ] Non partitioned media
+ [Sun    ] Sun Solaris partition
+ [XBox   ] XBox partition
+ [Return ] Return to disk selection
+
+Hint: None partition table type has been detected.
+Note: Do NOT select 'None' for media with only a single partition. It's very
+rare for a disk to be 'Non-partitioned'.
+</code></pre>
+
+<p>MBRを使っていれば，Intelを選ぶ．
+2TiB未満はIntelを選ぶ．2TiB以上はGUIDパーティションテーブルを使っているのでEFI GPTを選ぶ，らしい．</p>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+
+
+Disk windows.img - 128 GB / 119 GiB
+     CHS 15567 255 63 - sector size=512
+
+     &gt;[ Analyse  ] Analyse current partition structure and search for lost partitions
+      [ Advanced ] Filesystem Utils
+      [ Geometry ] Change disk geometry
+      [ Options  ] Modify options
+      [ MBR Code ] Write TestDisk MBR code to first sector
+      [ Delete   ] Delete all data in the partition table
+      [ Quit     ] Return to disk selection
+
+Note: Correct disk geometry is required for a successful recovery. 'Analyse'
+process may give some warnings if it thinks the logical geometry is mismatched.
+</code></pre>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+
+Disk windows.img - 128 GB / 119 GiB - CHS 15567 255 63
+Current partition structure:
+     Partition                  Start        End    Size in sectors
+
+      1 * HPFS - NTFS              0   0  9  3500  70 26   56231928
+      2 P HPFS - NTFS           3500  70 27 12023  56  1  136921088
+      3 P Windows RE(store)    12023  56  2 15566  19  5   56915968
+
+*=Primary bootable  P=Primary  L=Logical  E=Extended  D=Deleted
+&gt;[Quick Search]  [ Backup ]
+</code></pre>
+
+<p>Quick Searchしてみる</p>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+
+Disk windows.img - 128 GB / 119 GiB - CHS 15567 255 63
+
+The harddisk (128 GB / 119 GiB) seems too small! (&lt; 168 GB / 157 GiB)
+Check the harddisk size: HD jumpers settings, BIOS detection...
+
+The following partition can't be recovered:
+     Partition               Start        End    Size in sectors
+     &gt;  HPFS - NTFS          12023  56  1 20546  41 30  136921080
+
+[ Continue ]
+NTFS, blocksize=4096, 70 GB / 65 GiB
+</code></pre>
+
+<p>なんか見つかった．</p>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+
+Disk windows.img - 128 GB / 119 GiB - CHS 15567 255 63
+     Partition               Start        End    Size in sectors
+     &gt;* HPFS - NTFS              0   0  9  3500  70 18   56231920
+      D HPFS - NTFS           3500  70 27 12023  56  1  136921088
+      D HPFS - NTFS           3500  70 35 12023  56  1  136921080
+      P HPFS - NTFS          12023  56  2 15566  19  5   56915968
+
+Structure: Ok.  Use Up/Down Arrow keys to select partition.
+Use Left/Right Arrow keys to CHANGE partition characteristics:
+*=Primary bootable  P=Primary  L=Logical  E=Extended  D=Deleted
+Keys A: add partition, L: load backup, T: change type, P: list files,
+Enter: to continue
+</code></pre>
+
+<p>なんか増えた．testdiskはここで正しいパーティションテーブルの候補を提示してくる．
+現段階ではメインの領域候補が両方ともDeletedになっていてこのまま書き込むと削除されてしまう．
+正しいテーブルはどちらなのか，P: list filesとなっているので調べてみる．</p>
+
+<h4 id="1個目">1個目</h4>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+     HPFS - NTFS           3500  70 27 12023  56  1  136921088
+     Directory /
+
+     &gt;dr-xr-xr-x     0     0         0  7-Jul-2017 09:05 .
+      dr-xr-xr-x     0     0         0  7-Jul-2017 09:05 ..
+      -r--r--r--     0     0 4294967296 25-Jul-2017 17:15 pagefile.sys
+
+</code></pre>
+
+<h4 id="2個目">2個目</h4>
+
+<pre><code>TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER &lt;grenier@cgsecurity.org&gt;
+http://www.cgsecurity.org
+
+     HPFS - NTFS           3500  70 35 12023  56  1  136921080
+
+     Can't open filesystem. Filesystem seems damaged.
+</code></pre>
+
+<p>こんなん無理ゲーやん・・・(´・ω・｀)</p>
+
+<h5 id="なんかこうdeeper-searchとかやってみたけど無理だった">なんかこうDeeper Searchとかやってみたけど無理だった</h5>
+
+<h2 id="意味はないだろうけど-ntfsfixもやってみた">意味はないだろうけど，ntfsfixもやってみた</h2>
+
+<p>ntfsfixはディスクイメージに対応しないので，<a href="https://qiita.com/mokrai/items/55e
+0061e6d5fca78631f">loopバックデバイス</a>にマウントしてやってみた．</p>
+
+<p><a href="https://chrisdown.name/2011/06/01/fsck-partitions-inside-an-image.html">Running fsck on filesystems inside a partitioned image</a></p>
+
+<pre><code>$ losetup -o 28790751232 /dev/loop0 windows.img # 先ほどの値を使う
+$ sudo ntfsfix /dev/loop0
+</code></pre>
+
+<pre><code>$ sudo ntfsfix  /dev/loop0
+Mounting volume... ntfs_mst_post_read_fixup_warn: magic: 0x00000000  size: 4096   usa_ofs: 0  usa_count: 65535: Invalid argument
+Index buffer (VCN 0x0) of directory inode 0x5 has a size (24) differing from the directory specified size (4096).
+FAILED
+Attempting to correct errors... 
+Processing $MFT and $MFTMirr...
+Reading $MFT... OK
+Reading $MFTMirr... OK
+Comparing $MFTMirr to $MFT... OK
+Processing of $MFT and $MFTMirr completed successfully.
+Setting required flags on partition... OK
+Going to empty the journal ($LogFile)... OK
+ntfs_mst_post_read_fixup_warn: magic: 0x00000000  size: 4096   usa_ofs: 0  usa_count: 65535: Invalid argument
+Index buffer (VCN 0x0) of directory inode 0x5 has a size (24) differing from the directory specified size (4096).
+Remount failed: Input/output error
+</code></pre>
+
+<p>むーりぃー
+無理すぎィ！</p>
+
+<h2 id="万策尽きた-o">万策尽きた／(^o^)＼</h2>
+
+<p>ddrescueには可視化ツールとしてddrescueviewというのがあるらしい．
+最後に一応確認してみる．
+ddrescueで取得したログファイルを使う．</p>
+
+<pre><code class="language-shell">$ ddrescueview ddrescue.log
+</code></pre>
+
+<figure>
+  <img src="https://yktsr.github.io/images/ddrescueview.png" alt="" width="100%" height="100%">
+  
+</figure>
+
+
+<p>いや，無理でしょ，これ&hellip;&hellip;</p>
+
+<h2 id="運良く復旧出来たら">運良く復旧出来たら</h2>
+
+<pre><code class="language-bash">$ dd if=windows.img of=/dev/sdx bs=512k
+</code></pre>
+</div>
+
+  <footer class="article-footer">
+
+    <aside class="share">
+  <a href="http://b.hatena.ne.jp/add?mode=confirm&url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&title=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81" title="はてなブックマーク" class="ht" target="_blank" rel="nofollow">B!</a>
+  <a href="http://twitter.com/intent/tweet?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&text=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81&tw_p=tweetbutton" title="Twitterでシェア" class="tw" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+  <a href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&t=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81" title="Facebookでシェア" class="fb" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+  <a href="https://plus.google.com/share?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f" title="Google Plusでシェア" class="gp" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+  <a href="http://getpocket.com/edit?url=https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f&title=HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81" title="Pocketに保存" class="pk" target="_blank" rel="nofollow"><i class="fa fa-get-pocket" aria-hidden="true"></i></a>
+  <a href="http://line.me/R/msg/text/?HDD%2fSSD%e3%81%ae%e5%be%a9%e6%97%a7%e6%96%b9%e6%b3%95%e3%81%be%e3%81%a8%e3%82%81 https%3a%2f%2fyktsr.github.io%2fpost%2fhdd_broken%2f" title="LINEでシェア" class="ln" target="_blank" rel="nofollow">LINE</a>
+</aside>
+
+
+    <section class="footer">
+      <div>
+        <nav class="crumb">
+          <ol>
+            <li><a href="https://yktsr.github.io/"><i class="fa fa-home" aria-hidden="true"></i>TOP</a></li>
+            
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="https://yktsr.github.io/post/" itemprop="url"><span itemprop="title">POST</span></a></li>
+            
+            <li class="active">HDD/SSDの復旧方法まとめ</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    
+    
+    
+    <section class="footer">
+      <header>
+        <a href="https://yktsr.github.io/categories/">CATEGORIES</a>
+      </header>
+      <div>
+        <ul class="terms">
+          
+          <li><a href="https://yktsr.github.io/categories/post/">POST</a></li>
+          
+          <li><a href="https://yktsr.github.io/categories/other/">Other</a></li>
+          
+        </ul>
+      </div>
+    </section>
+    
+    
+    
+    
+  </footer>
+
+</article>
+
+
+    <div class="adj">
+      <div class="mrow">
+        
+        <div class="mcol c6">
+          <header>Previous Article</header>
+          <article class="lism">
+  <a href="https://yktsr.github.io/post/hello/">
+    <div class="thumb thumb-c0984379b06fc6168671e67f4dc3828a"></div>
+
+    <div class="inner">
+      <div class="title">Hello World</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-15T17:27:04JST">Jan 15, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+        </div>
+        
+        
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="mcol c4">
+    <aside class="l-sidebar">
+
+  <div class="sections sidebar">
+    
+<section class="sidebar">
+  <header>AUTHOR</header>
+  <div>
+    <div class="author">
+      
+      <div class="author-thumb" style="background-image: url(https://yktsr.github.io/images/author.jpg);"></div>
+      
+      <div class="author-name">Yuki Katsura</div>
+      <ul class="author-facts">
+        
+        <li><a href="https://twitter.com/kryptos_nv" rel="nofollow" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        <li><a href="https://github.com/yktsr" rel="nofollow" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+      </ul>
+      <div class="author-description"><p>Security Tester</p><p>Engineer</p></div>
+    </div>
+  </div>
+</section>
+
+
+    <section class="sidebar">
+  <header>LATESTS</header>
+  <div>
+    <div class="articles sm">
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/post/hdd_broken/">
+    <div class="thumb thumb-4134463d7df786f860e661115d10d8dc"></div>
+
+    <div class="inner">
+      <div class="title">HDD/SSDの復旧方法まとめ</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T17:51:24JST">Jan 28, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/security/hexstring/">
+    <div class="thumb thumb-0914e6be9375662c066e27d6801b7603"></div>
+
+    <div class="inner">
+      <div class="title">AES CBCモードで初期化ベクトルと鍵を指定して暗号化・復号</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-22T15:22:10JST">Jan 22, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>SECURITY</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/security/void_pointer/">
+    <div class="thumb thumb-b95f31349c8755f3a34e6baca8fa6a15"></div>
+
+    <div class="inner">
+      <div class="title">(*(void(*)()) shellcode)()の意味について考える</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-16T16:28:12JST">Jan 16, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>SECURITY</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/post/hello/">
+    <div class="thumb thumb-c0984379b06fc6168671e67f4dc3828a"></div>
+
+    <div class="inner">
+      <div class="title">Hello World</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-15T17:27:04JST">Jan 15, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/categories/">
+    <div class="thumb thumb-d41d8cd98f00b204e9800998ecf8427e"></div>
+
+    <div class="inner">
+      <div class="title">Categories</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="0001-01-01T00:00:00JST">Jan 1, 0001</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>CATEGORIES</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/">
+    <div class="thumb thumb-d41d8cd98f00b204e9800998ecf8427e"></div>
+
+    <div class="inner">
+      <div class="title">Electric Sheep and Androids</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T17:51:24JST">Jan 28, 2018</time></li>
+        
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/categories/other/">
+    <div class="thumb thumb-d41d8cd98f00b204e9800998ecf8427e"></div>
+
+    <div class="inner">
+      <div class="title">Other</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T17:51:24JST">Jan 28, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>CATEGORIES</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/categories/post/">
+    <div class="thumb thumb-d41d8cd98f00b204e9800998ecf8427e"></div>
+
+    <div class="inner">
+      <div class="title">Post</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T17:51:24JST">Jan 28, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>CATEGORIES</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/post/">
+    <div class="thumb thumb-d41d8cd98f00b204e9800998ecf8427e"></div>
+
+    <div class="inner">
+      <div class="title">Posts</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-28T17:51:24JST">Jan 28, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>POST</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+      <article class="lism">
+  <a href="https://yktsr.github.io/security/">
+    <div class="thumb thumb-d41d8cd98f00b204e9800998ecf8427e"></div>
+
+    <div class="inner">
+      <div class="title">Securities</div>
+
+      <ul class="facts sm">
+        <li><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="2018-01-22T15:22:10JST">Jan 22, 2018</time></li>
+        <li><i class="fa fa-bookmark" aria-hidden="true"></i>SECURITY</li>
+        
+      </ul>
+
+    </div>
+  </a>
+</article>
+
+      
+    </div>
+  </div>
+</section>
+
+    
+<section class="sidebar">
+  <header>CATEGORIES</header>
+  <div>
+    <ul class="terms">
+      <li><a href="https://yktsr.github.io/categories/post">post <span class="count">(4)</span></a></li><li><a href="https://yktsr.github.io/categories/other">other <span class="count">(2)</span></a></li><li><a href="https://yktsr.github.io/categories/security">security <span class="count">(2)</span></a></li>
+    </ul>
+  </div>
+</section>
+
+
+
+    
+
+  </div>
+
+</aside>
+
+  </div>
+</div>
+
+      </div>
+    </main>
+
+    <footer class="l-footer">
+      <div class="l-container">
+        <p><span class="h-logo">&copy; Electric Sheep and Androids</span></p>
+        <aside>
+          <p>Powered by <a href="https://gohugo.io/">Hugo</a>.</p>
+          <p><a href="https://github.com/dim0627/hugo_theme_robust">Robust</a> designed by <a href="http://yet.unresolved.xyz/">Daisuke Tsuji</a>.</p>
+        </aside>
+      </div>
+    </footer>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
+

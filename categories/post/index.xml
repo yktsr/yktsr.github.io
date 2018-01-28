@@ -6,10 +6,19 @@
     <description>Recent content in Post on Electric Sheep and Androids</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 22 Jan 2018 15:22:10 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jan 2018 17:51:24 +0900</lastBuildDate>
     
 	<atom:link href="https://yktsr.github.io/categories/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HDD/SSDの復旧方法まとめ</title>
+      <link>https://yktsr.github.io/post/hdd_broken/</link>
+      <pubDate>Sun, 28 Jan 2018 17:51:24 +0900</pubDate>
+      
+      <guid>https://yktsr.github.io/post/hdd_broken/</guid>
+      <description>事の始まり SSDが壊れた． またか，と思っていつもどおりddrescueの使い方を調べ始める． 去年は3台ほどHDDを壊し，ddrescueによ</description>
+    </item>
     
     <item>
       <title>AES CBCモードで初期化ベクトルと鍵を指定して暗号化・復号</title>
