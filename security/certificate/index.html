@@ -165,13 +165,15 @@
 <h2 id="便利コマンドとかハマりポイント対策まとめ">便利コマンドとかハマりポイント対策まとめ</h2>
 
 <ol>
-<li>証明局を作らず、証明書署名要求を自分の秘密鍵で署名して、証明書と秘密鍵をぱぱっと作る
-<code>
-$ openssl req -x509 -nodes -new -keyout tmp.key -out tmp.pem -days 3600 -newkey rsa:2048 -sha512 -subj &quot;/C=CountryName/ST=StateOrProvinceName/L=LocalityName/O=OrganaizationName/OU=OrganizationalUnit/CN=CommanName&quot;
-</code></li>
+<li><p>証明局を作らず、証明書署名要求を自分の秘密鍵で署名して、証明書と秘密鍵をぱぱっと作る</p>
 
-<li><p>証明書署名要求と秘密鍵を作る
-$ openssl req -new -newkey rsa:4096 -sha512 -nodes -keyout cert.key -out cert.csr</p></li>
+<pre><code>$ openssl req -x509 -nodes -new -keyout tmp.key -out tmp.pem -days 3600 -newkey rsa:2048 -sha512 -subj &quot;/C=CountryName/ST=StateOrProvinceName/L=LocalityName/O=OrganaizationName/OU=OrganizationalUnit/CN=CommanName&quot;
+</code></pre></li>
+
+<li><p>証明書署名要求と秘密鍵を作る</p>
+
+<pre><code>$ openssl req -new -newkey rsa:4096 -sha512 -nodes -keyout cert.key -out cert.csr
+</code></pre></li>
 
 <li><p>証明書表示</p>
 
